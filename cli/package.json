@@ -9,7 +9,9 @@
     "url": "https://github.com/wbrinksma/BlackboardAPI"
   },
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "@stefanfortuin/blackboardlib-test": "0.0.35"
+  },
   "dependencies": {
     "blackboardlib": "0.0.4",
     "html-webpack-plugin": "^4.0.0-beta.5",

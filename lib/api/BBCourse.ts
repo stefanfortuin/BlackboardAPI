@@ -11,7 +11,7 @@ export default class BBCourse {
 
     constructor(courseId: string = null) {
         this._courseId = {courseId};
-        this.getCourseInformation()
+        this.getCourseInformation();
     }
 
     public getCourseInformation(): Promise<BBBackend.ICourseInformation> {
@@ -176,6 +176,14 @@ export default class BBCourse {
 
             Backend.getBackend().courses.getAssignmentCols(this._courseId).then((assignments) => {
                 resolve(assignments);
+            });
+        });
+    }
+
+    public getAnnouncements(): Promise<BBBackend.IAnnouncement[]> {
+        return new Promise((resolve, reject) => {
+            Backend.getBackend().courses.getAnnouncements(this._courseId).then((announcements) => {
+                resolve(announcements);
             });
         });
     }

@@ -217,19 +217,23 @@ export default class BBGradeColumns extends GradeColumns {
      * @param {any} information
      */
     private createIAssignmentAttempt(information: any): BBBackend.IAssignmentAttempt {
-        return {
-            created: information.created,
-            feedback: information.feedback,
-            groupAttemptId: information.groupAttemptId,
-            id: information.id,
-            notes: information.notes,
-            score: information.score,
-            status: information.status,
-            studentComments: information.studentComments,
-            studentSubmission: information.studentSubmission,
-            text: information.text,
-            userId: information.userId
-        };
+            const score: number = (typeof information.displayGrade !== "undefined")
+                ? information.displayGrade.score
+                : information.score;
+
+            return {
+                created: information.created,
+                feedback: information.feedback,
+                groupAttemptId: information.groupAttemptId,
+                id: information.id,
+                notes: information.notes,
+                score: score,
+                status: information.status,
+                studentComments: information.studentComments,
+                studentSubmission: information.studentSubmission,
+                text: information.text,
+                userId: information.userId
+            };
     }
 
     /**
@@ -238,15 +242,29 @@ export default class BBGradeColumns extends GradeColumns {
      * @param {any} information
      */
     private createIAssignment(information: any): BBBackend.IAssignment {
-        return {
-            attemptsAllowed: information.grading.attemptsAllowed,
-            available: Utilities.stringToBoolean(information.availability.available),
-            contentId: information.contentId,
-            desc: information.description,
-            due: information.grading.due,
-            id: information.id,
-            name: information.name,
-            score: information.score.possible
-        };
+
+        if (typeof information.availability !== "undefined") {
+            return {
+                attemptsAllowed: information.grading.attemptsAllowed,
+                available: Utilities.stringToBoolean(information.availability.available),
+                contentId: information.contentId,
+                desc: information.description,
+                due: information.grading.due,
+                id: information.id,
+                name: information.name,
+                score: information.score.possible
+            };
+        } else {
+            return {
+                attemptsAllowed: information.grading.attemptsAllowed,
+                available: true,
+                contentId: information.contentId,
+                desc: "",
+                due: information.grading.due,
+                id: information.id,
+                name: information.name,
+                score: information.score.possible
+            };
+        }
     }
 }

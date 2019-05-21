@@ -248,21 +248,76 @@ export default class BBCourses extends Courses {
         });
     }
 
+    public getAnnouncements(parameters: BBBackend.CourseID): Promise<BBBackend.IAnnouncement[]> {
+        const path: string = "/webapps/blackboard/execute/announcement?method=search&context=course_entry&course_id=" + parameters.courseId + "&handle=announcements_entry&mode=view";
+
+        return new Promise((resolve, reject) => {
+            HTTPRequest.getAsync(path).then((response) => {
+                const parser = new DOMParser();
+                const parsedHtml = parser.parseFromString(response, 'text/html');
+                const parsedAnnouncements: any[] = [];
+
+                const announcements = parsedHtml.getElementById('announcementList').getElementsByTagName('li');
+
+                for (const a of announcements) {
+                    const information = {id: "", title: "", datePosted: "", postedBy: "", postedTo: "", content: ""};
+                    information.id = a.id;
+                    information.title = a.getElementsByTagName("h3")[0].innerText;
+
+                    const detailDiv = a.getElementsByClassName("details")[0];
+                    information.datePosted = detailDiv.getElementsByTagName("p")[0].getElementsByTagName("span")[0].innerHTML;
+                    information.content = detailDiv.getElementsByClassName("vtbegenerated")[0].getElementsByTagName("p")[0].innerHTML;
+
+                    parsedAnnouncements.push(this.createIAnnouncement(information));
+                }
+                resolve(parsedAnnouncements);
+            });
+        });
+    }
+
     /**
      * Creates an IAssignment from a JSON response.
      *
      * @param {any} information
      */
     private createIAssignment(information: any): BBBackend.IAssignment {
-        return {
-            attemptsAllowed: information.grading.attemptsAllowed,
-            available: Utilities.stringToBoolean(information.availability.available),
-            contentId: information.contentId,
-            desc: information.description,
-            due: information.grading.due,
+        if (typeof information.availability !== "undefined") {
+            return {
+                attemptsAllowed: information.grading.attemptsAllowed,
+                available: Utilities.stringToBoolean(information.availability.available),
+                contentId: information.contentId,
+                desc: information.description,
+                due: information.grading.due,
+                id: information.id,
+                name: information.name,
+                score: information.score.possible
+            };
+        } else {
+            return {
+                attemptsAllowed: information.grading.attemptsAllowed,
+                available: null,
+                contentId: information.contentId,
+                desc: null,
+                due: information.grading.due,
+                id: information.id,
+                name: information.name,
+                score: information.score.possible
+            };
+        }
+    }
+
+    /**
+     * Creates an IAssignment from a JSON response.
+     *
+     * @param {any} information
+     */
+    private createIAnnouncement(information: any): BBBackend.IAnnouncement {
+        return{
+            content: information.content,
+            datePosted: information.datePosted,
             id: information.id,
-            name: information.name,
-            score: information.score.possible
+            title: information.title,
         };
     }
+
 }

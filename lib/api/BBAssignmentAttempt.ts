@@ -3,14 +3,14 @@ import Backend from './Backend';
 export default class BBAssignmentAttempt {
     private readonly _courseId: string;
     private readonly _columnId: string;
-    private readonly _assignmentId: string;
+    private readonly _attemptId: string;
     private assignmentInformation: BBBackend.IAssignmentAttempt;
     private files: BBBackend.IAssignmentAttemptFile[];
 
-    constructor(courseId: string, columnId: string, assignmentId: string) {
+    constructor(courseId: string, columnId: string, attemptId: string) {
         this._courseId = courseId;
         this._columnId = columnId;
-        this._assignmentId = assignmentId;
+        this._attemptId = attemptId;
         this.getAttemptInformation();
     }
 
@@ -22,8 +22,8 @@ export default class BBAssignmentAttempt {
         return this._columnId;
     }
 
-    get assignmentId(): string {
-        return this._assignmentId;
+    get attemptId(): string {
+        return this._attemptId;
     }
 
     public getAttemptInformation(): Promise<BBBackend.IAssignmentAttempt> {
@@ -34,7 +34,7 @@ export default class BBAssignmentAttempt {
             }
 
             const parameters: BBBackend.AssignmentID = {
-                attemptId: this._assignmentId,
+                attemptId: this._attemptId,
                 columnId: this._columnId,
                 courseId: this._courseId
             };

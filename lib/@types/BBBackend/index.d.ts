@@ -143,16 +143,16 @@ declare namespace BBBackend {
         readonly feedback: string;
     }
 
-    interface IAssignment {
-        readonly attemptsAllowed: number;
-        readonly available: boolean;
+	interface IAssignment {
+		readonly attemptsAllowed: number;
+		readonly available: boolean;
         readonly contentId: string;
-        readonly desc: string;
+		readonly desc: string;
         readonly due: string;
         readonly id: string;
         readonly name: string;
         readonly score: number;
-    }
+	}
 
     interface IAssignmentAttempt {
         readonly created: string;
@@ -173,4 +173,11 @@ declare namespace BBBackend {
         readonly name: string;
         readonly url: string;
     }
+
+	interface IAnnouncement {
+		readonly id: string,
+		readonly title: string,
+		readonly datePosted: string,
+		readonly content: string,
+	}
 }
