@@ -63,7 +63,13 @@ export default class BBGradeColumn {
 	
 	public createAssignmentAttempt(attemptInput: any): Promise<BBBackend.IAssignmentAttempt> {
 		return new Promise((resolve) => {
-			Backend.getBackend().gradeColumns.createAssignmentAttempt(attemptInput).then((information) => {
+			const parameters = {
+				courseId: this._columnId.courseId,
+				columnId: this._columnId.columnId,
+				attemptInput: attemptInput,
+			}
+
+			Backend.getBackend().gradeColumns.createAssignmentAttempt(parameters).then((information) => {
 				resolve(information);
 			})
 		})
