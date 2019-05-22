@@ -68,6 +68,34 @@ export default class BBFiles extends Files {
                 HTTPRequest.postAsync(form.action+"&course_id="+parameters.id, formData);
             });
         })
+	}
+	
+	public submitAttempt(parameters: BBBackend.SubmitParameter): Promise<BBBackend.ITaskComplete>{
+        return new Promise((resolve, reject) => {
+			const path = "/webapps/assignment/uploadAssignment?action=submit"
+            
+            HTTPRequest.getAsync(path).then( (response) => {
+                let parser: DOMParser = new DOMParser();
+                let dom: HTMLDocument = parser.parseFromString(response, 'text/html') as HTMLDocument;
+                let form = dom.getElementsByName("fileUpload")[0] as HTMLFormElement;
+                let formData: FormData = new FormData();
+				const securityNonce: string = Utilities.getNonceFromForm(dom, 'fileUpload');
+				const securityNonceAjax: string = Utilities.getNonceAjaxFromForm(dom, 'fileUpload');
+				formData.append('blackboard.platform.security.NonceUtil.nonce', securityNonce);
+				formData.append('blackboard.platForm.security.NonceUtil.nonce.ajax', securityNonceAjax);
+                formData.append('çontent_id', parameters.contentId);
+                formData.append('course_id', parameters.courseId);
+                formData.append('dispatch', "submit");
+                formData.append('isAjaxSubmit', "true");
+                formData.append('newFilefilePickerLastInput', 'dummyValue');
+				formData.append('recallUrl', "/webapps/blackboard/content/listContent.jsp?content_id=" + parameters.contentId + "&course_id=" + parameters.courseId);
+				formData.append('studentSumbission.type', "H");
+				formData.append('student_commentstext', parameters.comments);
+				formData.append('student_commentstype', "H");
+				formData.append('textbox_prefix', "studentSubmission.text");
+                HTTPRequest.postAsync(form.action+"&course_id="+parameters.id, formData);
+            });
+        })
     }
 
     public deleteFile(parameters: BBBackend.FileInfoParameter): Promise<BBBackend.ITaskComplete>{

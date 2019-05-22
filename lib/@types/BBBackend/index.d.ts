@@ -32,7 +32,15 @@ declare namespace BBBackend {
     type FileInfoParameter = CourseID & {
         "id": string,
         "name": string
+	};
+	
+	type SubmitInfoParameter = CourseID & {
+		"id": string,
+		"contentId": string,
+		"comments": string,
     };
+
+	type SubmitParameter = SubmitInfoParameter & {"body": Blob};
 
     type FileAttachmentParameter = FileInfoParameter & {"body": Blob};
     type FilePermissions = FileInfoParameter & {

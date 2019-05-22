@@ -28,6 +28,18 @@ export default class Utilities {
         const form = doc.getElementsByName(formName)[0] as HTMLFormElement;
 
         return form.elements["blackboard.platform.security.NonceUtil.nonce"].value || "";
+	}
+	
+	    /**
+     * Get a Blackboard nonce from a specified document, located by the formName
+     * @param {HTMLDocument} doc The document the nonce is on
+     * @param {string} formName The name of the form the nonce is in
+     * @returns {string}
+     */
+    public static getNonceAjaxFromForm(doc: HTMLDocument, formName: string): string {
+        const form = doc.getElementsByName(formName)[0] as HTMLFormElement;
+
+        return form.elements["blackboard.platform.security.NonceUtil.nonce.ajax"].value || "";
     }
 
     private static readonly SURROGATE_PAIR_REGEXP = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
