@@ -59,5 +59,13 @@ export default class BBGradeColumn {
                 resolve(information);
             });
         });
-    }
+	}
+	
+	public createAssignmentAttempt(attemptInput: any): Promise<BBBackend.IAssignmentAttempt> {
+		return new Promise((resolve) => {
+			Backend.getBackend().gradeColumns.createAssignmentAttempt(attemptInput).then((information) => {
+				resolve(information);
+			})
+		})
+	}
 }
