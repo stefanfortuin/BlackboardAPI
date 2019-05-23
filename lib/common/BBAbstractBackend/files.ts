@@ -38,6 +38,13 @@ export default abstract class Files {
      */
     public abstract publishFile(parameters: BBBackend.FileAttachmentParameter): Promise<BBBackend.ITaskComplete>;
 
+	/**
+     * Submit a attempt
+     * @param parameters The parameters to use with this function.
+     * @returns A promise which indicates when the task is complete.
+     */
+    public abstract submitAttempt(parameters: BBBackend.SubmitInfoParameter): Promise<BBBackend.ITaskComplete>;
+
     /**
      * Set permisions of a file in the content management system
      * @param parameters The parameters to use with this function.

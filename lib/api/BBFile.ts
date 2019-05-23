@@ -73,6 +73,12 @@ export default class BBFile {
          });
     }
 
+	 public submitAttempt(parameters: BBBackend.SubmitInfoParameter): Promise<BBBackend.ITaskComplete> {
+        return new Promise((resolve, reject) => {
+			resolve(Backend.getBackend().files.submitAttempt(parameters));
+		});
+    }
+
     public setPermissions(permissions: BBBackend.FilePermissions = null): Promise<BBBackend.ITaskComplete> {
         if(permissions !== null) this._permissions = permissions
         return new Promise((resolve, reject) => {
