@@ -4,6 +4,7 @@ export default class BBGroup {
     private _courseId: string;
 
     private groups: BBBackend.IGroup[];
+    private users: BBBackend.IGroupUsers[];
 
     constructor(courseId: string) {
         this._courseId = courseId;
@@ -30,4 +31,24 @@ export default class BBGroup {
             });
         });
     }
+
+    public getUsers(parameter : string): Promise<BBBackend.IGroupUsers[]> {
+        return new Promise((resolve, reject) => {
+            if (this.users){ 
+                resolve(this.users);
+                return;
+            };
+
+            const parameters: BBBackend.GroupInformation = {
+                courseId: this.courseId,
+                groupId: parameter
+            };
+
+            Backend.getBackend().groups.getUsers(parameters).then((information) => {
+                this.users = information;
+                resolve(this.users);
+            })
+        });
+    }
+
 }
