@@ -25,7 +25,7 @@ export default class BBGroups extends Groups {
   }
 
   public getUsers(parameters: BBBackend.GroupInformation): Promise<BBBackend.IGroupUsers[]> {
-    const path = "/learn/api/public/v1/courses/" + parameters.courseId + "/groups/" + parameters.groupId;
+    const path = "/learn/api/public/v1/courses/" + parameters.courseId + "/groups/" + parameters.groupId + "/users";
     return new Promise((resolve, reject) => {
         HTTPRequest.getAsync(path).then((response) => {
             const allUserInformation = JSON.parse(response);
