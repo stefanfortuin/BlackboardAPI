@@ -23,4 +23,22 @@ export default class BBGroups extends Groups {
           });
       });
   }
+
+  public getUsers(parameters: BBBackend.GroupInformation): Promise<BBBackend.IGroupUsers[]> {
+    const path = "/learn/api/public/v1/courses/" + parameters.courseId + "/groups/" + parameters.groupId;
+    return new Promise((resolve, reject) => {
+        HTTPRequest.getAsync(path).then((response) => {
+            const allUserInformation = JSON.parse(response);
+            const responseInfo = new Array<BBBackend.IGroupUsers>();
+
+            allUserInformation.results.forEach((result) => {
+                const resultObject: BBBackend.IGroupUsers = {
+                    id: result.id
+                }
+                responseInfo.push(resultObject);
+            });
+            resolve(responseInfo);
+        })
+    })
+  }
 }

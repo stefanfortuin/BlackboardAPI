@@ -99,6 +99,10 @@ declare namespace BBBackend {
         readonly parentId: string;
     }
 
+    interface GroupInformation {
+        readonly courseId: string;
+        readonly groupId: string;
+    }
     interface ICourseContent {
         readonly id: string;
         readonly parentId: string;
@@ -141,6 +145,10 @@ declare namespace BBBackend {
         readonly id: string;
         readonly name: string;
         readonly desc: string;
+    }
+
+    interface IGroupUsers {
+        readonly id: string;
     }
 
     interface IGrade {

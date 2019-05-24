@@ -9,4 +9,11 @@ export default abstract class Groups {
      * @returns A promise with an array of groups.
      */
     public abstract getGroups(parameters: BBBackend.CourseID): Promise<BBBackend.IGroup[]>;
+
+        /**
+     * Get all users from a specific group.
+     * @param parameters The parameters to use with this function.
+     * @returns A promise with an array of groups.
+     */
+    public abstract getUsers(parameter: BBBackend.GroupInformation): Promise<BBBackend.IGroupUsers[]>;
 }
