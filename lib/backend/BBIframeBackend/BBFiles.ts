@@ -35,6 +35,10 @@ export default class BBFiles extends Files {
         return this.backend.sendMessageThroughConnectionManager( this.category, "submitAttempt", parameters );
     }
 
+    public getIframe(parameters: string): Promise<HTMLElement> {
+        return this.backend.sendMessageThroughConnectionManager( this.category, "getIframe", parameters );
+    }
+
     public setPermissions(parameters: BBBackend.FilePermissions): Promise<BBBackend.ITaskComplete> {
         return this.backend.sendMessageThroughConnectionManager( this.category, "setPermissions", parameters)
     }

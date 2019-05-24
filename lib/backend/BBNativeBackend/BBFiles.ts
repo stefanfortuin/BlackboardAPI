@@ -98,6 +98,17 @@ export default class BBFiles extends Files {
         })
     }
 
+    public getIframe(parameters: string): Promise<HTMLElement>{
+        return new Promise((resolve, reject) => {
+            let ifrm = document.createElement("iframe");
+            ifrm.setAttribute("src", parameters);
+            ifrm.style.width = "640px";
+            ifrm.style.height = "480px";
+            document.body.appendChild(ifrm);
+            resolve(ifrm);
+        })
+    }
+
     public deleteFile(parameters: BBBackend.FileInfoParameter): Promise<BBBackend.ITaskComplete>{
         return this.fileAction(parameters,'multiple','delete')
     }

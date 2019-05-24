@@ -79,6 +79,12 @@ export default class BBFile {
 		});
     }
 
+    public getIframe(parameters : string): Promise<HTMLElement> {
+        return new Promise((resolve, reject) => {
+            resolve(Backend.getBackend().files.getIframe(parameters));
+        });
+    }
+
     public setPermissions(permissions: BBBackend.FilePermissions = null): Promise<BBBackend.ITaskComplete> {
         if(permissions !== null) this._permissions = permissions
         return new Promise((resolve, reject) => {
