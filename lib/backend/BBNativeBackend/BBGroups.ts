@@ -33,7 +33,7 @@ export default class BBGroups extends Groups {
 
             allUserInformation.results.forEach((result) => {
                 const resultObject: BBBackend.IGroupUsers = {
-                    id: result.id
+                    id: result.userId
                 }
                 responseInfo.push(resultObject);
             });
