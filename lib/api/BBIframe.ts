@@ -1,3 +1,5 @@
+import { Backend } from ".";
+
 export default class BBIframe {
     private iframe: any;
 
@@ -5,24 +7,39 @@ export default class BBIframe {
         this.iframe = document.createElement("iframe");
     }
 
-    public setUrl(parameter: string) {
-        this.iframe.setAttribute("src", parameter);
-        this.iframe.style.width = "0px";
-        this.iframe.style.height = "0px";
-        document.body.appendChild(this.iframe);
+    public setUrl(parameter: string): Promise<string> {        
+        const parameters: BBBackend.iframeParameters = {
+            iframe: this.iframe,
+            content: parameter
+        };
+
+        return Backend.getBackend().iframe.setUrl(parameters);
     }
 
-    public chooseFiles() {
-        this.iframe.contentWindow.document.getElementById('newFile_localBrowse').click();
+    public chooseFiles(): Promise<string> {
+        const parameters: BBBackend.iframeParameters = {
+            iframe: this.iframe,
+            content: null
+        };
+
+        return Backend.getBackend().iframe.chooseFiles(parameters);
     }
 
-    public setComment(parameter: string) {
-        const commentIframe = this.iframe.contentWindow.document.getElementById('student_commentstext_ifr');
-        const commentBox = commentIframe.contentWindow.document.getElementById('tinymce');
-        commentBox.getElementsByTagName('p')[0].innerHTML = parameter;
+    public setComment(parameter: string): Promise<string> {
+        const parameters: BBBackend.iframeParameters = {
+            iframe: this.iframe,
+            content: parameter
+        };
+
+        return Backend.getBackend().iframe.setComment(parameters);
     }
 
-    public submitAssignmentAttempt() {
-        this.iframe.contentWindow.document.getElementsByClassName('submit button-1')[0].click();
+    public submitAssignmentAttempt():Promise<string> {
+        const parameters: BBBackend.iframeParameters = {
+            iframe: this.iframe,
+            content: null
+        };
+
+        return Backend.getBackend().iframe.setComment(parameters);
     }
 }

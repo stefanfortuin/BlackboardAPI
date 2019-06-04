@@ -1,7 +1,7 @@
 import { BBIframeBackend } from "..";
 import Iframe from "../../common/BBAbstractBackend/iframe";
 
-export default class BBGroups extends Iframe {
+export default class BBIframe extends Iframe {
     private backend: BBIframeBackend;
     private category: string;
 
@@ -11,19 +11,19 @@ export default class BBGroups extends Iframe {
         this.category = category;
     }
 
-    public setUrl(parameter: string) {
-        return this.backend.sendMessageThroughConnectionManager(this.category, "setUrl", parameter);
+    public setUrl(parameters: BBBackend.iframeParameters): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "setUrl", parameters);
     }
 
-    public chooseFiles() {
-        return this.backend.sendMessageThroughConnectionManager(this.category, "chooseFiles");
+    public chooseFiles(parameters: BBBackend.iframeParameters): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "chooseFiles", parameters);
     }
 
-    public setComment(parameter: string) {
-        return this.backend.sendMessageThroughConnectionManager(this.category, "setComment", parameter);
+    public setComment(parameters: BBBackend.iframeParameters): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "setComment", parameters);
     }
 
-    public submitAssignmentAttempt() {
-        return this.backend.sendMessageThroughConnectionManager(this.category, "submitAssignmentAttempt");
+    public submitAssignmentAttempt(parameters: BBBackend.iframeParameters): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "submitAssignmentAttempt", parameters);
     }
 }
