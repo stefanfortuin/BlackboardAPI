@@ -42,6 +42,8 @@ declare namespace BBBackend {
 
 	type SubmitParameter = SubmitInfoParameter & {"body": Blob};
 
+	type MembershipParameters = CourseID & UserID;
+
     type FileAttachmentParameter = FileInfoParameter & {"body": Blob};
     type FilePermissions = FileInfoParameter & {
         "bAllowEveryone": string,
@@ -154,6 +156,7 @@ declare namespace BBBackend {
     interface IGrade {
         readonly columnId: string;
         readonly text: string;
+		readonly status: string;
         readonly score: number;
         readonly notes: string;
         readonly feedback: string;
@@ -168,6 +171,14 @@ declare namespace BBBackend {
         readonly id: string;
         readonly name: string;
         readonly score: number;
+	}
+
+	interface IMembership {
+		readonly userId: string;
+		readonly courseId: string;
+		readonly created: string;
+		readonly roleId: string;
+		readonly lastAccessed: string;
 	}
 
     interface IAssignmentAttempt {

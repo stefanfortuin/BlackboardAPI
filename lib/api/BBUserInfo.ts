@@ -8,6 +8,7 @@ import Backend from './Backend';
 export abstract class BBUserInfo {
     protected _userName: string;
     protected _userId: string;
+    protected _membership: BBBackend.IMembership;
 
     private userInfo: BBBackend.IUserInfo;
     private enrolledCourses: BBBackend.ICourseID[];
@@ -17,7 +18,7 @@ export abstract class BBUserInfo {
             Backend.getBackend().users.getCurrentUserId(null).then((userid) => {
                 resolve(userid);
             });
-        })
+        });
     }
 
     public getUserName(): Promise<string> {
@@ -42,6 +43,20 @@ export abstract class BBUserInfo {
 
             this.getUserInfo().then(() => {
                 resolve(this._userId);
+            });
+        });
+    }
+
+    public getUserMembershipFromCourse(parameters: BBBackend.MembershipParameters): Promise<BBBackend.IMembership> {
+        return new Promise((resolve, reject) => {
+            if (this._membership) {
+                resolve(this._membership);
+                return;
+            }
+
+            Backend.getBackend().users.getUserMembershipFromCourse(parameters).then((membership) => {
+                this._membership = membership;
+                resolve(membership);
             });
         });
     }

@@ -79,7 +79,7 @@ export default class BBFile {
 		});
     }
 
-    public getIframe(parameters : string): Promise<HTMLElement> {
+    public getIframe(parameters: string): Promise<HTMLElement> {
         return new Promise((resolve, reject) => {
             resolve(Backend.getBackend().files.getIframe(parameters));
         });

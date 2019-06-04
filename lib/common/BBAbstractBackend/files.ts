@@ -46,7 +46,7 @@ export default abstract class Files {
     public abstract submitAttempt(parameters: BBBackend.SubmitInfoParameter): Promise<BBBackend.ITaskComplete>;
 
     /**
-     * Submit a attempt
+     * Get Iframe with specific url
      * @param parameters The parameters to use with this function.
      * @returns A promise which indicates when the task is complete.
      */

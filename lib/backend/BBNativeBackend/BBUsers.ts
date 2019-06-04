@@ -63,4 +63,24 @@ export default class BBUsers extends Users {
             });
         });
     }
+
+    public getUserMembershipFromCourse(parameters: BBBackend.MembershipParameters): Promise<BBBackend.IMembership> {
+        const path = "/learn/api/public/v1/courses/" + parameters.courseId + "/users/" + parameters.userId;
+
+        return new Promise((resolve, reject) => {
+            HTTPRequest.getAsync(path).then((response) => {
+                const membershipObject = JSON.parse(response);
+
+                const membership: BBBackend.IMembership = {
+                    userId:         membershipObject.userId,
+                    courseId:         membershipObject.courseId,
+                    created:         membershipObject.created,
+                    roleId:         membershipObject.courseRoleId,
+                    lastAccessed:    membershipObject.lastAccessed,
+                };
+
+                resolve(membership);
+            });
+        });
+    }
 }

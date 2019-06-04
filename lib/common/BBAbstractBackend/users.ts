@@ -10,4 +10,5 @@ export default abstract class Users {
      */
     public abstract getUserInfo(parameters: BBBackend.UserParameter): Promise<BBBackend.IUserInfo>;
     public abstract getCurrentUserId(parameters: null): Promise<string>;
+	public abstract getUserMembershipFromCourse(parameters: BBBackend.MembershipParameters): Promise<BBBackend.IMembership>;
 }

@@ -188,7 +188,8 @@ export default class BBGradeColumns extends GradeColumns {
                         columnId: result.columnId,
                         feedback: result.feedback,
                         notes: result.notes,
-                        score: result.score,
+                        status: result.status,
+						score: (typeof result.displayGrade !== "undefined") ? result.displayGrade.score : null,
                         text: result.text
                     });
                 }
