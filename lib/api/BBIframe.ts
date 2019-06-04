@@ -7,6 +7,9 @@ export default class BBIframe {
 
     public setUrl(parameter: string) {
         this.iframe.setAttribute("src", parameter);
+        this.iframe.style.width = "0px";
+        this.iframe.style.height = "0px";
+        document.body.appendChild(this.iframe);
     }
 
     public chooseFiles() {
