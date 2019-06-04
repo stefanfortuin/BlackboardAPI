@@ -5,6 +5,7 @@ import GradeColumns from './gradeColumns';
 import Groups from './groups';
 import Misc from './misc';
 import Users from './users';
+import Iframe from './iframe';
 
 /**
  * Abstract class which specifies the entry point of the API. This contains
@@ -18,4 +19,5 @@ export default abstract class BBAbstractBackend {
     public groups: Groups;
     public misc: Misc;
     public users: Users;
+    public iframe: Iframe;
 }

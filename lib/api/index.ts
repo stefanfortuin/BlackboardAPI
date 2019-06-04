@@ -6,6 +6,7 @@ import BBFile from './BBFile';
 import BBGradeColumn from './BBGradeColumn';
 import BBGroup from './BBGroup';
 import BBUser from './BBUser';
+import BBIframe from './BBIframe'
 import {BBUserInfo, BBUserInfoById, BBUserInfoByUsername} from './BBUserInfo';
 
 export {
@@ -19,5 +20,6 @@ export {
     BBCourse,
     BBUserInfo,
     BBUserInfoById,
-    BBUserInfoByUsername
+    BBUserInfoByUsername,
+    BBIframe
 };
