@@ -38,7 +38,7 @@ export default class BBIframeBackend extends BBAbstractBackend {
     public groups = new BBGroups('groups', this);
     public misc = new BBMisc('misc', this);
     public users = new BBUsers('users', this);
-    public iframe = new BBIframe('iframe', this)
+    public iframe = new BBIframe('iframe', this);
 
     private checkIfInsideIframe(): boolean {
         try {

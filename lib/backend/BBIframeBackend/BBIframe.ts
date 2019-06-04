@@ -4,8 +4,6 @@ import Iframe from "../../common/BBAbstractBackend/iframe";
 export default class BBGroups extends Iframe {
     private backend: BBIframeBackend;
     private category: string;
-    private url: string;
-    private ifrm: any;
 
     constructor(category: string, backend: BBIframeBackend) {
         super();

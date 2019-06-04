@@ -6,6 +6,7 @@ import BBGradeColumns from './BBGradeColumns';
 import BBGroups from './BBGroups';
 import BBMisc from './BBMisc';
 import BBUsers from './BBUsers';
+import BBIframe from './BBIframe';
 
 /**
  * @see BBAbstractBackend
@@ -18,4 +19,5 @@ export default class BBNativeBackend extends BBAbstractBackend {
     public groups = new BBGroups();
     public misc = new BBMisc();
     public users = new BBUsers();
+    public iframe = new BBIframe();
 }
