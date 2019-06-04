@@ -11,19 +11,19 @@ export default class BBIframe extends Iframe {
         this.category = category;
     }
 
-    public setUrl(parameters: BBBackend.iframeParameters): Promise<string> {
-        return this.backend.sendMessageThroughConnectionManager(this.category, "setUrl", parameters);
+    public setUrl(parameter: string): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "setUrl", parameter);
     }
 
-    public chooseFiles(parameters: BBBackend.iframeParameters): Promise<string> {
-        return this.backend.sendMessageThroughConnectionManager(this.category, "chooseFiles", parameters);
+    public chooseFiles(): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "chooseFiles");
     }
 
-    public setComment(parameters: BBBackend.iframeParameters): Promise<string> {
-        return this.backend.sendMessageThroughConnectionManager(this.category, "setComment", parameters);
+    public setComment(parameter: string): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "setComment", parameter);
     }
 
-    public submitAssignmentAttempt(parameters: BBBackend.iframeParameters): Promise<string> {
-        return this.backend.sendMessageThroughConnectionManager(this.category, "submitAssignmentAttempt", parameters);
+    public submitAssignmentAttempt(): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "submitAssignmentAttempt");
     }
 }

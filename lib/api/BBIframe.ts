@@ -1,45 +1,21 @@
 import { Backend } from ".";
 
 export default class BBIframe {
-    private iframe: any;
-
-    constructor() {
-        this.iframe = document.createElement("iframe");
-    }
 
     public setUrl(parameter: string): Promise<string> {        
-        const parameters: BBBackend.iframeParameters = {
-            iframe: this.iframe,
-            content: parameter
-        };
-
-        return Backend.getBackend().iframe.setUrl(parameters);
+        return Backend.getBackend().iframe.setUrl(parameter);
     }
 
     public chooseFiles(): Promise<string> {
-        const parameters: BBBackend.iframeParameters = {
-            iframe: this.iframe,
-            content: null
-        };
-
-        return Backend.getBackend().iframe.chooseFiles(parameters);
+        return Backend.getBackend().iframe.chooseFiles();
     }
 
     public setComment(parameter: string): Promise<string> {
-        const parameters: BBBackend.iframeParameters = {
-            iframe: this.iframe,
-            content: parameter
-        };
 
-        return Backend.getBackend().iframe.setComment(parameters);
+        return Backend.getBackend().iframe.setComment(parameter);
     }
 
     public submitAssignmentAttempt():Promise<string> {
-        const parameters: BBBackend.iframeParameters = {
-            iframe: this.iframe,
-            content: null
-        };
-
-        return Backend.getBackend().iframe.setComment(parameters);
+        return Backend.getBackend().iframe.submitAssignmentAttempt();
     }
 }

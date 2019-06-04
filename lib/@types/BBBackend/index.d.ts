@@ -40,11 +40,6 @@ declare namespace BBBackend {
 		"comments": string,
     };
 
-    type iframeParameters = {
-        "iframe": any,
-        "content": string
-    }
-
 	type SubmitParameter = SubmitInfoParameter & {"body": Blob};
 
 	type MembershipParameters = CourseID & UserID;
