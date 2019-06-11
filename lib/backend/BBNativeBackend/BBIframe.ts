@@ -30,7 +30,7 @@ export default class BBIframe extends Iframe {
                 this.iframe.contentDocument.body.style.marginTop = "0px";
                 this.iframe.contentDocument.body.style.backgroundColor = "#ffffff";
                 this.iframe.contentDocument.body.style.background = "none";
-				this.iframe.style.dispaly = "";
+				this.iframe.style.display = "";
             }, 1000); 
 
             const result = "Url has been set";
