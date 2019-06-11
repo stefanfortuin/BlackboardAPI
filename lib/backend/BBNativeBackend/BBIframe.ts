@@ -17,12 +17,12 @@ export default class BBIframe extends Iframe {
             this.iframe.id = "upload-iframe";
             document.body.appendChild(this.iframe);
 
-            setTimeout(function(){  
+            setTimeout(() => {  
                 var divs = this.iframe.contentDocument.getElementsByTagName("div"); 
                 var button = this.iframe.contentWindow.document.getElementById('newFile_chooseLocalFile');
                 for (var i = 0; i < divs.length; i++) { 
-                divs[i].style.display = 'none';         
-                } 
+                    divs[i].style.display = 'none';         
+                }
                 this.iframe.contentDocument.body.appendChild(button);
                 this.iframe.style.width = "118px";
                 this.iframe.style.height = "17px";
