@@ -9,6 +9,7 @@ export default class BBIframe extends Iframe {
             this.iframe.setAttribute("src", parameter);
 
             this.iframe.setAttribute("scrolling", "no"); 
+			this.iframe.style.display = "none";
             this.iframe.style.width = "200px"; 
             this.iframe.style.height = "200px";
             this.iframe.style.position = "absolute";
@@ -29,6 +30,7 @@ export default class BBIframe extends Iframe {
                 this.iframe.contentDocument.body.style.marginTop = "0px";
                 this.iframe.contentDocument.body.style.backgroundColor = "#ffffff";
                 this.iframe.contentDocument.body.style.background = "none";
+				this.iframe.style.dispaly = "";
             }, 1000); 
 
             const result = "Url has been set";
