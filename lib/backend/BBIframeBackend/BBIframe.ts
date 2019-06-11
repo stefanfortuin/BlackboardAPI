@@ -26,4 +26,8 @@ export default class BBIframe extends Iframe {
     public submitAssignmentAttempt(): Promise<string> {
         return this.backend.sendMessageThroughConnectionManager(this.category, "submitAssignmentAttempt");
     }
+
+    public removeIframe(): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "removeIframe");
+    }
 }

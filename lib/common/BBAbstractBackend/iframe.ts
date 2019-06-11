@@ -25,4 +25,9 @@ export default abstract class Iframe {
      * Submits the assignmentAttempt
      */
     public abstract submitAssignmentAttempt();
+
+     /**
+     * removes the Iframe
+     */
+    public abstract removeIframe();
 }

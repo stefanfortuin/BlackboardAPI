@@ -18,4 +18,8 @@ export default class BBIframe {
     public submitAssignmentAttempt():Promise<string> {
         return Backend.getBackend().iframe.submitAssignmentAttempt();
     }
+
+    public removeIframe(): Promise<string> {
+        return Backend.getBackend().iframe.removeIframe();
+    }
 }

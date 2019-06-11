@@ -63,4 +63,14 @@ export default class BBIframe extends Iframe {
             resolve(result);
         })
     }
+
+    public removeIframe(): Promise<string> {
+        return new Promise((resolve, reject) => {
+            document.body.removeChild(this.iframe);
+            const result = "Iframe has been deleted";
+            resolve(result);
+        })
+    }
+
+    
 }
