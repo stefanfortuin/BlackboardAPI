@@ -40,4 +40,9 @@ export default abstract class Iframe {
      * Hides the iframe
      */
     public abstract hideIframe();
+
+    /**
+     * Looks if the submission has been sent to blackboard
+     */
+    public abstract submissionSent();
 }

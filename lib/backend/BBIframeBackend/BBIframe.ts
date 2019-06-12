@@ -38,4 +38,8 @@ export default class BBIframe extends Iframe {
     public hideIframe(): Promise<string> {
         return this.backend.sendMessageThroughConnectionManager(this.category, "hideIframe");
     }
+
+    public submissionSent(): Promise<boolean> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "submissionSent");
+    }
 }

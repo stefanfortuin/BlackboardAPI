@@ -30,4 +30,8 @@ export default class BBIframe {
     public hideIframe(): Promise<string> {
         return Backend.getBackend().iframe.hideIframe();
     }
+
+    public submissionSent(): Promise<boolean> {
+        return Backend.getBackend().iframe.submissionSent();
+    }
 }

@@ -95,4 +95,11 @@ export default class BBIframe extends Iframe {
             resolve(result);
         })
     }
+    
+    public submissionSent(): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            const result = this.iframe.contentWindow.document.getElementById('goodMsg1').textContent.includes("Success");
+            resolve(result);
+        })
+    }
 }
