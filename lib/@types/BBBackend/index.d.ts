@@ -59,11 +59,17 @@ declare namespace BBBackend {
         "bAllowManage": string,
     }
 
+	type AttemptInputParameter = {
+		"score": number,
+		"feedback": string,
+		"notes": string,
+	}
+
     type CourseContentParameter = CourseID & ContentID;
     type CreateColParameter = CourseID & {"body": string};
     type UpdateColParameter = CreateColParameter & {"columnId": string};
 
-    type CreateAssignmentParameter = ColumnID & {"attemptInput": string};
+    type CreateAssignmentParameter = ColumnID & {"attemptInput": AttemptInputParameter};
     type UpdateAssignmentParameter = AssignmentID & CreateAssignmentParameter;
 
     type AssignmentAttemptFilesParameter = CourseID & {"attemptId": string};

@@ -46,6 +46,21 @@ export default class BBAssignmentAttempt {
         });
     }
 
+    public updateAssignmentAttempt(input: BBBackend.AttemptInputParameter): Promise<BBBackend.IAssignmentAttempt> {
+        return new Promise((resolve, reject) => {
+            const parameters: BBBackend.UpdateAssignmentParameter = {
+                courseId: this._courseId,
+                columnId: this._columnId,
+                attemptId: this._attemptId,
+                attemptInput: input,
+            };
+
+            return Backend.getBackend().gradeColumns.updateAssignmentAttempt(parameters).then((attempt) => {
+                resolve(attempt);
+            });
+        });
+    }
+
     public getAssociatedFiles(): Promise<BBBackend.IAssignmentAttemptFile[]> {
         return new Promise((resolve, reject) => {
            if (this.files) {

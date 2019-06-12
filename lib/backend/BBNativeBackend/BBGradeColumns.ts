@@ -54,7 +54,7 @@ export default class BBGradeColumns extends GradeColumns {
         formData.append('attemptInput', parameters.attemptInput);
 
         return new Promise((resolve, reject) => {
-            HTTPRequest.postAsync(path, formData).then((response) => {
+            HTTPRequest.patchAsync(path, formData).then((response) => {
                 const attempt: any = JSON.parse(response);
 
                 const result: BBBackend.IAssignmentAttempt = this.createIAssignmentAttempt(attempt);
