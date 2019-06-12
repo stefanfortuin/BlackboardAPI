@@ -22,4 +22,12 @@ export default class BBIframe {
     public removeIframe(): Promise<string> {
         return Backend.getBackend().iframe.removeIframe();
     }
+
+    public getAttachedFiles() : Promise<string[]> {
+        return Backend.getBackend().iframe.getAttachedFiles();
+    }
+
+    public hideIframe(): Promise<string> {
+        return Backend.getBackend().iframe.hideIframe();
+    }
 }

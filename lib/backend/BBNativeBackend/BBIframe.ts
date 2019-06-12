@@ -74,5 +74,25 @@ export default class BBIframe extends Iframe {
         })
     }
 
-    
+    public getAttachedFiles(): Promise<string[]> {
+        return new Promise((resolve, reject) => {
+            var fileTable = this.iframe.contentWindow.document.getElementById('newFile_table_body');
+            var fileList = [];
+            for(let i = 0; i < fileTable.getElementsByTagName('tr').length; i++){
+                let tr = fileTable.getElementsByTagName('tr')[i];
+                if(tr.getElementsByClassName('fileName')[0]){
+                    fileList.push(tr.getElementsByClassName('fileName')[0].textContent);
+                }
+            }
+            resolve(fileList);
+        })
+    }
+
+    public hideIframe(): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.iframe.style.display = 'none';
+            const result = "Iframe has been hidden";
+            resolve(result);
+        })
+    }
 }

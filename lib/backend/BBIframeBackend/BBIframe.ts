@@ -30,4 +30,12 @@ export default class BBIframe extends Iframe {
     public removeIframe(): Promise<string> {
         return this.backend.sendMessageThroughConnectionManager(this.category, "removeIframe");
     }
+
+    public getAttachedFiles() : Promise<string[]> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "getAttachedFiles");
+    }
+
+    public hideIframe(): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "hideIframe");
+    }
 }

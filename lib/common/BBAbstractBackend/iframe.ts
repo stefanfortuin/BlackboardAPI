@@ -27,7 +27,17 @@ export default abstract class Iframe {
     public abstract submitAssignmentAttempt();
 
      /**
-     * removes the Iframe
+     * Removes the Iframe
      */
     public abstract removeIframe();
+
+    /**
+     * Shows the attached files of the iframe
+     */
+    public abstract getAttachedFiles();
+
+    /**
+     * Hides the iframe
+     */
+    public abstract hideIframe();
 }
