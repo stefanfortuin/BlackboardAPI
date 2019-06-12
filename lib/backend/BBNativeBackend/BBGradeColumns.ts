@@ -36,7 +36,7 @@ export default class BBGradeColumns extends GradeColumns {
     public createAssignmentAttempt(parameters: BBBackend.CreateAssignmentParameter): Promise<BBBackend.IAssignmentAttempt> {
         const path = "/learn/api/public/v2/courses/" + parameters.courseId + "/gradebook/columns/" + parameters.columnId + "/attempts";
         const formData = new FormData();
-        formData.append('attemptInput', parameters.attemptInput);
+        formData.append('attemptInput', JSON.stringify(parameters.attemptInput));
 
         return new Promise((resolve, reject) => {
             HTTPRequest.postAsync(path, formData).then((response) => {
@@ -51,7 +51,7 @@ export default class BBGradeColumns extends GradeColumns {
     public updateAssignmentAttempt(parameters: BBBackend.UpdateAssignmentParameter): Promise<BBBackend.IAssignmentAttempt> {
         const path = "/learn/api/public/v2/courses/" + parameters.courseId + "/gradebook/columns/" + parameters.columnId + "/attempts/" + parameters.attemptId;
         const formData = new FormData();
-        formData.append('attemptInput', parameters.attemptInput);
+        formData.append('attemptInput', JSON.stringify(parameters.attemptInput));
 
         return new Promise((resolve, reject) => {
             HTTPRequest.patchAsync(path, formData).then((response) => {
