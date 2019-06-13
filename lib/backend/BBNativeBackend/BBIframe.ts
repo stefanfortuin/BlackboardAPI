@@ -76,8 +76,8 @@ export default class BBIframe extends Iframe {
 
     public getAttachedFiles(): Promise<string[]> {
         return new Promise((resolve, reject) => {
-            var fileTable = this.iframe.contentWindow.document.getElementById('newFile_table_body');
-            var fileList = [];
+            let fileTable = this.iframe.contentWindow.document.getElementById('newFile_table_body');
+            let fileList = [];
             for(let i = 0; i < fileTable.getElementsByTagName('tr').length; i++){
                 let tr = fileTable.getElementsByTagName('tr')[i];
                 if(tr.getElementsByClassName('fileName')[0]){
@@ -98,7 +98,11 @@ export default class BBIframe extends Iframe {
     
     public submissionSent(): Promise<boolean> {
         return new Promise((resolve, reject) => {
-            const result = this.iframe.contentWindow.document.getElementById('goodMsg1').textContent.includes("Success");
+            let message = this.iframe.contentWindow.document.getElementById('goodMsg1');
+            let result = false;
+            if(message == null)
+                resolve(result);
+            result = message.textContent.includes("Success");
             resolve(result);
         })
     }
