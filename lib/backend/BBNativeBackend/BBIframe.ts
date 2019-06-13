@@ -76,7 +76,7 @@ export default class BBIframe extends Iframe {
         return new Promise((resolve, reject) => {
             let fileTable = this.iframe.contentWindow.document.getElementById('newFile_table_body');
             let fileList = [];
-            if(fileTable = null)
+            if(fileTable == null)
                 resolve(fileList)
             for(let i = 0; i < fileTable.getElementsByTagName('tr').length; i++){
                 let tr = fileTable.getElementsByTagName('tr')[i];
