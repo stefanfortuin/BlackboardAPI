@@ -34,4 +34,16 @@ export default class BBIframe {
     public submissionSent(): Promise<boolean> {
         return Backend.getBackend().iframe.submissionSent();
     }
+
+    public setCommentTeacher(parameter: string): Promise<string> {
+        return Backend.getBackend().iframe.setCommentTeacher(parameter);
+    }
+
+    public setGrade(parameter: string): Promise<string> {
+        return Backend.getBackend().iframe.setGrade(parameter);
+    }
+
+    public submitMark(): Promise<string> {
+        return Backend.getBackend().iframe.submitMark();
+    }
 }

@@ -45,4 +45,19 @@ export default abstract class Iframe {
      * Looks if the submission has been sent to blackboard
      */
     public abstract submissionSent();
+
+    /**
+     * Sets the teacher comments on a assignment attempt
+     */
+    public abstract setCommentTeacher(parameter: string);
+
+    /**
+     * Sets the grade of the student on a assignment attempt
+     */
+    public abstract setGrade(parameter: string);
+
+    /**
+     * submits the marks given by the teacher on a attempt
+     */
+    public abstract submitMark();
 }

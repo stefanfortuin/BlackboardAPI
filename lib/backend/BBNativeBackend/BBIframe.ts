@@ -30,7 +30,9 @@ export default class BBIframe extends Iframe {
                 this.iframe.contentDocument.body.style.marginTop = "0px";
                 this.iframe.contentDocument.body.style.backgroundColor = "#ffffff";
                 this.iframe.contentDocument.body.style.background = "none";
-				this.iframe.style.display = "";
+                this.iframe.style.display = "";
+                if(parameter.includes("outcomeDefinitionId"))
+                    this.iframe.style.display = 'none';
             }, 1000); 
 
             const result = "Url has been set";
@@ -104,6 +106,33 @@ export default class BBIframe extends Iframe {
                 resolve(result);
             result = message.textContent.includes("Success");
             resolve(result);
+        })
+    }
+
+    public setCommentTeacher(parameter: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            const commentIframe = this.iframe.contentWindow.document.getElementById('feedbacktext_ifr');
+            const commentBox = commentIframe.contentWindow.document.getElementById('tinymce');
+            commentBox.getElementsByTagName('p')[0].innerHTML = parameter;
+
+            const result = "Commit has been set";
+            resolve(result);
+        })
+    }
+
+    public setGrade(parameter: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.iframe.contentWindow.document.getElementById('currentAttempt_grade').value = parameter;
+            const result = "Grade has been set";
+            resolve(result);
+        })
+    }
+
+    public submitMark(): Promise<string> {
+        return new Promise((resolve, reject) => {
+        this.iframe.contentWindow.document.getElementById('currentAttempt_submitButton').click();   
+        const result = "Mark has been submitted";
+        resolve(result);
         })
     }
 }
