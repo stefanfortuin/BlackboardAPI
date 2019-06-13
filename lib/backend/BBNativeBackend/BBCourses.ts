@@ -249,7 +249,7 @@ export default class BBCourses extends Courses {
     }
 
     public getAnnouncements(parameters: BBBackend.CourseID): Promise<BBBackend.IAnnouncement[]> {
-        const path: string = "/webapps/blackboard/execute/announcement?method=search&context=course_entry&course_id=" + parameters.courseId + "&handle=announcements_entry&mode=view";
+        const path: string = "/webapps/blackboard/execute/announcement?method=search&context=course_entry&course_id=" + parameters.courseId + "&viewChoice=2";
 
         return new Promise((resolve, reject) => {
             HTTPRequest.getAsync(path).then((response) => {
@@ -260,11 +260,22 @@ export default class BBCourses extends Courses {
                 const announcements = parsedHtml.getElementById('announcementList').getElementsByTagName('li');
 
                 for (const a of announcements) {
+                    if (a.id == "announcementList:insertionMarker.announcementList") {
+                        continue;
+                    }
+
                     const information = {id: "", title: "", datePosted: "", postedBy: "", postedTo: "", content: ""};
+                    const detailDiv = a.getElementsByClassName("details")[0];
+
+                    if (detailDiv.getElementsByTagName("i").length > 0) {
+                        if (detailDiv.getElementsByTagName("i")[0].innerText == "Item is not available.") {
+                            continue;
+                        }
+                    }
+
                     information.id = a.id;
                     information.title = a.getElementsByTagName("h3")[0].innerText;
 
-                    const detailDiv = a.getElementsByClassName("details")[0];
                     information.datePosted = detailDiv.getElementsByTagName("p")[0].getElementsByTagName("span")[0].innerHTML;
                     information.content = detailDiv.getElementsByClassName("vtbegenerated")[0].getElementsByTagName("p")[0].innerHTML;
 
