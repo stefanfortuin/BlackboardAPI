@@ -18,6 +18,13 @@ export default class BBIframe extends Iframe {
             this.iframe.id = "upload-iframe";
             document.body.appendChild(this.iframe);
 
+            const result = "Url has been set";
+            resolve(result);
+        })
+    }
+
+    public chooseFiles(): Promise<string> {
+        return new Promise((resolve, reject) => {
             setTimeout(() => {  
                 var divs = this.iframe.contentDocument.getElementsByTagName("div"); 
                 var button = this.iframe.contentWindow.document.getElementById('newFile_chooseLocalFile');
@@ -31,20 +38,9 @@ export default class BBIframe extends Iframe {
                 this.iframe.contentDocument.body.style.backgroundColor = "#ffffff";
                 this.iframe.contentDocument.body.style.background = "none";
                 this.iframe.style.display = "";
-                if(parameter.includes("outcomeDefinitionId"))
-                    this.iframe.style.display = 'none';
             }, 1000); 
 
-            const result = "Url has been set";
-            resolve(result);
-        })
-    }
-
-    public chooseFiles(): Promise<string> {
-        return new Promise((resolve, reject) => {
-            this.iframe.contentWindow.document.getElementById('newFile_localBrowse').click();
-
-            const result = "File has been chosen";
+            const result = "Display Button";
             resolve(result);
         })
     }
@@ -80,6 +76,8 @@ export default class BBIframe extends Iframe {
         return new Promise((resolve, reject) => {
             let fileTable = this.iframe.contentWindow.document.getElementById('newFile_table_body');
             let fileList = [];
+            if(fileTable = null)
+                resolve(fileList)
             for(let i = 0; i < fileTable.getElementsByTagName('tr').length; i++){
                 let tr = fileTable.getElementsByTagName('tr')[i];
                 if(tr.getElementsByClassName('fileName')[0]){
