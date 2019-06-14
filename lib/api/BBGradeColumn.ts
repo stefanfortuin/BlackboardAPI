@@ -46,10 +46,12 @@ export default class BBGradeColumn {
     }
 
     public getAssignmentAttempts(): Promise<BBBackend.IAssignmentAttempt[]> {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             Backend.getBackend().gradeColumns.getAssignmentAttempts(this._columnId).then((information) => {
                 resolve(information);
-            });
+            }).catch((error) => {
+				reject(error);
+			});
         });
     }
 
