@@ -79,8 +79,10 @@ export default class BBGradeColumns extends GradeColumns {
         const path = "/learn/api/public/v2/courses/" + parameters.courseId + "/gradebook/columns/" + parameters.columnId + "/attempts";
         return new Promise((resolve, reject) => {
             HTTPRequest.getAsync(path).then((response) => {
-                const attempts: any[] = JSON.parse(response).results;
+				const json = JSON.parse(response);
+				if (json.status == 500) resolve([]);
 
+				const attempts: any[] = json.results;
                 const result: BBBackend.IAssignmentAttempt[] = [];
 
                 for (const attempt of attempts) {
