@@ -15,7 +15,7 @@ export default class HTTPRequest {
             };
 
             getRequest.onerror = () => {
-                reject(getRequest.status);
+                resolve("error code: " + getRequest.status);
             };
 
             getRequest.send(body);
