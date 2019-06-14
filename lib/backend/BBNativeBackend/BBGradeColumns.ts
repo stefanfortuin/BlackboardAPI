@@ -88,7 +88,9 @@ export default class BBGradeColumns extends GradeColumns {
                 }
 
                 resolve(result);
-            });
+            }).catch((error) => {
+				reject(error);
+			});
         });
     }
 
