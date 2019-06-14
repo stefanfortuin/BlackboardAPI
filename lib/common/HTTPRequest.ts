@@ -10,12 +10,12 @@ export default class HTTPRequest {
                 if (getRequest.status === 200) {
                     resolve(getRequest.responseText);
                 } else {
-                    resolve("error code: " + getRequest.status);
+                    reject(getRequest.statusText);
                 }
             };
 
             getRequest.onerror = () => {
-                resolve("error code: " + getRequest.status);
+                reject(getRequest.statusText);
             };
 
             getRequest.send(body);
