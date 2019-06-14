@@ -10,7 +10,7 @@ export default class HTTPRequest {
                 if (getRequest.status === 200) {
                     resolve(getRequest.responseText);
                 } else {
-                    reject(getRequest.status);
+                    resolve("error code: " + getRequest.status);
                 }
             };
 
