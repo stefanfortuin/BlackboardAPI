@@ -9,12 +9,12 @@ export default class BBIframe extends Iframe {
             this.iframe.setAttribute("src", parameter);
 
             this.iframe.setAttribute("scrolling", "no"); 
-			this.iframe.style.display = "none";
+            this.iframe.style.display = "none";
             this.iframe.style.width = "200px"; 
             this.iframe.style.height = "200px";
             this.iframe.style.position = "absolute";
             this.iframe.style.top = "129px";
-            this.iframe.style.left = (screen.width - 118) / 2 + "px";
+            this.iframe.style.left = (screen.width - 243) / 2 + "px";
             this.iframe.id = "upload-iframe";
             document.body.appendChild(this.iframe);
 
@@ -28,17 +28,18 @@ export default class BBIframe extends Iframe {
             setTimeout(() => {  
                 var divs = this.iframe.contentDocument.getElementsByTagName("div"); 
                 var button = this.iframe.contentWindow.document.getElementById('newFile_chooseLocalFile');
-                for (var i = 0; i < divs.length; i++) { 
+                for (var i = 0; i < divs.length; i++) {
                     divs[i].style.display = 'none';         
                 }
                 this.iframe.contentDocument.body.appendChild(button);
-                this.iframe.style.width = "118px";
-                this.iframe.style.height = "17px";
+                this.iframe.style.width = "243px";
+                this.iframe.style.height = "21px";
+                this.iframe.style.display = "";
+                this.iframe.style.borderWidth = "0px";
                 this.iframe.contentDocument.body.style.marginTop = "0px";
                 this.iframe.contentDocument.body.style.backgroundColor = "#ffffff";
                 this.iframe.contentDocument.body.style.background = "none";
-                this.iframe.style.display = "";
-            }, 1000); 
+            }, 1000);
 
             const result = "Display Button";
             resolve(result);
