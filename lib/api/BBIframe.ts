@@ -15,6 +15,10 @@ export default class BBIframe {
         return Backend.getBackend().iframe.setComment(parameter);
     }
 
+    public setSubmission(parameter: string): Promise<string> {
+        return Backend.getBackend().iframe.setSubmission(parameter);
+    }
+
     public submitAssignmentAttempt():Promise<string> {
         return Backend.getBackend().iframe.submitAssignmentAttempt();
     }

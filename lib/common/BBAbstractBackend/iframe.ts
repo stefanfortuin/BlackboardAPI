@@ -17,10 +17,15 @@ export default abstract class Iframe {
 
     /**
      * Sets the comment of the assignmentAttempt
-     * @param parameters The parameters to use with this function.
+     * @param parameters The parameter to use with this function.
      */
     public abstract setComment(parameter: string);
 
+    /**
+     * Sets the submission of the assignmentAttempt
+     * @param parameters The parameter to use with this function.
+     */
+    public abstract setSubmission(parameter: string);
     /**
      * Submits the assignmentAttempt
      */

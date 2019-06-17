@@ -19,7 +19,10 @@ export default class BBIframe extends Iframe {
             document.body.appendChild(this.iframe);
 
             const result = "Url has been set";
-            resolve(result);
+
+            this.iframe.contentDocument.addEventLsitener("load", () => {
+                resolve()
+            })
         })
     }
 
@@ -52,6 +55,18 @@ export default class BBIframe extends Iframe {
             commentBox.getElementsByTagName('p')[0].innerHTML = parameter;
 
             const result = "Commit has been set";
+            resolve(result);
+        })
+    }
+
+    public setSubmission(parameter: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            let submissionDiv = document.getElementsByClassName('mceIframeContainer mceFirst mceLast')[0];
+            let ifrm = submissionDiv.getElementsByTagName('iframe')[0];
+            let submissionBox = ifrm.contentWindow.document.getElementById('tinymce');
+            submissionBox.getElementsByTagName('p')[0].innerHTML = parameter;
+
+            const result = "Submission has been set";
             resolve(result);
         })
     }

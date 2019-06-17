@@ -23,6 +23,10 @@ export default class BBIframe extends Iframe {
         return this.backend.sendMessageThroughConnectionManager(this.category, "setComment", parameter);
     }
 
+    public setSubmission(parameter: string): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "setSubmission", parameter);
+    }
+
     public submitAssignmentAttempt(): Promise<string> {
         return this.backend.sendMessageThroughConnectionManager(this.category, "submitAssignmentAttempt");
     }
