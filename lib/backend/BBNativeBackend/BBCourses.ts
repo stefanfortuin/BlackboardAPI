@@ -258,14 +258,25 @@ export default class BBCourses extends Courses {
                 const parsedAnnouncements: any[] = [];
 
                 const announcements = parsedHtml.getElementById('announcementList').getElementsByTagName('li');
+                let teacher = false;
+
+                for (const a of announcements){
+                    if (a.className == "contextmenubar_top"){
+                        teacher = true;
+                    }
+                }
 
                 for (const a of announcements) {
-                    if (a.id == "announcementList:insertionMarker.announcementList") {
+                    if (a.id == "announcementList:insertionMarker.announcementList" || a.className == "contextmenubar_top" || a.id.includes("modify") || a.id.includes("remove")) {
                         continue;
                     }
 
                     const information = {id: "", title: "", datePosted: "", postedBy: "", postedTo: "", content: ""};
-                    const detailDiv = a.getElementsByClassName("details")[0];
+                    let detailDiv = a.getElementsByClassName("details")[0];
+
+                    if (detailDiv === undefined) {
+                        detailDiv = a.getElementsByClassName("details tab-group-label")[0];
+                    }
 
                     if (detailDiv.getElementsByTagName("i").length > 0) {
                         if (detailDiv.getElementsByTagName("i")[0].innerText == "Item is not available.") {
@@ -274,11 +285,14 @@ export default class BBCourses extends Courses {
                     }
 
                     information.id = a.id;
-                    information.title = a.getElementsByTagName("h3")[0].innerText;
+                    if (teacher) {
+                        information.title = a.getElementsByTagName("span")[2].innerText;
+                    } else {
+                        information.title = a.getElementsByTagName("h3")[0].innerText;
+                    }
 
                     information.datePosted = detailDiv.getElementsByTagName("p")[0].getElementsByTagName("span")[0].innerHTML;
                     information.content = detailDiv.getElementsByClassName("vtbegenerated")[0].getElementsByTagName("p")[0].innerHTML;
-
                     parsedAnnouncements.push(this.createIAnnouncement(information));
                 }
                 resolve(parsedAnnouncements);
