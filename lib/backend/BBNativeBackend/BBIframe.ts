@@ -60,10 +60,8 @@ export default class BBIframe extends Iframe {
 
     public setSubmission(parameter: string): Promise<string> {
         return new Promise((resolve, reject) => {
-            let submissionDiv = document.getElementsByClassName('mceIframeContainer mceFirst mceLast')[0];
-            let ifrm = submissionDiv.getElementsByTagName('iframe')[0];
-            let submissionBox = ifrm.contentWindow.document.getElementById('tinymce');
-            submissionBox.getElementsByTagName('p')[0].innerHTML = parameter;
+            const iframeBox = this.iframe.contentDocument.getElementById("studentSubmission.text_ifr");
+            iframeBox.contentDocument.getElementById("tinymce").innerHTML = parameter;
 
             const result = "Submission has been set";
             resolve(result);
