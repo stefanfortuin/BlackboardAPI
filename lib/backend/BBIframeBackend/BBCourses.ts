@@ -61,7 +61,7 @@ export default class BBCourses extends Courses {
     }
 
 	public getInternshipRequestForm(): Promise<string> {
-		return this.backend.sendMessageThroughConnectionManager(this.category, "getIntershipRequestForm", null);
+		return this.backend.sendMessageThroughConnectionManager(this.category, "getInternshipRequestForm", null);
 	}
 
     public getCourseChildren(parameters: BBBackend.CourseID): Promise<BBBackend.ICourseChild[]> {
