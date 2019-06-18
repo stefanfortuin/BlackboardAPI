@@ -142,6 +142,16 @@ export default class BBCourses extends Courses {
         });
     }
 
+    public getInternshipRequestForm(): Promise<string> {
+        const path = "/bbcswebdav/courses/ICT-1819-844/site/tools/register_internship/Aanvraagformulier_Stage_HBO-ICT.html";
+
+        return new Promise((resolve, reject) => {
+            HTTPRequest.getAsync(path).then((response) => {
+                resolve(response);
+            });
+        });
+    }
+
     public getCourseContent(parameters: BBBackend.CourseContentParameter): Promise<BBBackend.ICourseContent> {
         const path = "/learn/api/public/v1/courses/" + parameters.courseId + "/contents/" + parameters.contentId;
         return new Promise((resolve, reject) => {

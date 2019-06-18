@@ -80,6 +80,14 @@ export default class BBCourse {
         });
     }
 
+    public getInternshipRequestForm(): Promise<string> {
+        return new Promise((resolve, reject) => {
+            Backend.getBackend().courses.getInternshipRequestForm().then((response) => {
+                resolve(response);
+            });
+        });
+    }
+
     public getCourseContent(contentId: string): Promise<BBBackend.ICourseContent> {
         return new Promise((resolve, reject) => {
             if (this.courseContents) {
