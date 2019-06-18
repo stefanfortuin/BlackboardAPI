@@ -292,7 +292,7 @@ export default class BBCourses extends Courses {
                     }
 
                     information.datePosted = detailDiv.getElementsByTagName("p")[0].getElementsByTagName("span")[0].innerHTML;
-                    information.content = detailDiv.getElementsByClassName("vtbegenerated")[0].getElementsByTagName("p")[0].innerHTML;
+                    information.content = detailDiv.getElementsByClassName("vtbegenerated")[0].innerHTML;
                     parsedAnnouncements.push(this.createIAnnouncement(information));
                 }
                 resolve(parsedAnnouncements);

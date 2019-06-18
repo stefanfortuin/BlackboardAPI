@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@stefanfortuin/blackboardlib-test": "0.0.35"
+    "@stefanfortuin/blackboardlib-test": "0.0.82"
   },
   "dependencies": {
     "blackboardlib": "0.0.4",

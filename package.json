@@ -7,6 +7,10 @@
     "build:clean": "rimraf dist build",
     "build:copy-files": "node ./scripts/copy-files",
     "build": "tsc && npm run build:babel && npm run build:copy-files",
+
+	"serverfile-server" : "cd D:/Git/BlackBoardAPI/cli/bin && npm install @stefanfortuin/blackboardlib-test@latest && node cli.js create ./server -c https://stefanfortuin.github.io/index.html -s https://stefanfortuin.github.io/serverfiles/server.js",
+	"serverfile-localhost" : "cd D:/Git/BlackBoardAPI/cli/bin && npm install @stefanfortuin/blackboardlib-test@latest && node cli.js create ./serverLocalhost -c https://localhost:8080/ -s https://stefanfortuin.github.io/serverfiles/serverLocalhost.js",
+	"create-serverfile" : "npm run serverfile-server && npm run serverfile-localhost",
     "prebuild": "npm run build:clean",
     "postbuild": "rimraf build",
     "compile-test": "tsc -p test.tsconfig.json",
