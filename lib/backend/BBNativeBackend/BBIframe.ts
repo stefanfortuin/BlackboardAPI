@@ -14,15 +14,13 @@ export default class BBIframe extends Iframe {
             this.iframe.style.height = "200px";
             this.iframe.style.position = "absolute";
             this.iframe.style.top = "129px";
-            this.iframe.style.left = (screen.width - 243) / 2 + "px";
+            this.iframe.style.left = "33px";
             this.iframe.id = "upload-iframe";
+
             document.body.appendChild(this.iframe);
 
             const result = "Url has been set";
-
-            this.iframe.contentDocument.addEventLsitener("load", () => {
-                resolve()
-            })
+            resolve(result);
         })
     }
 
@@ -32,11 +30,11 @@ export default class BBIframe extends Iframe {
                 var divs = this.iframe.contentDocument.getElementsByTagName("div"); 
                 var button = this.iframe.contentWindow.document.getElementById('newFile_chooseLocalFile');
                 for (var i = 0; i < divs.length; i++) {
-                    divs[i].style.display = 'none';         
+                    divs[i].style.display = 'none';
                 }
                 this.iframe.contentDocument.body.appendChild(button);
-                this.iframe.style.width = "243px";
-                this.iframe.style.height = "21px";
+                this.iframe.style.width = "90%";
+                this.iframe.style.height = "30px";
                 this.iframe.style.display = "";
                 this.iframe.style.borderWidth = "0px";
                 this.iframe.contentDocument.body.style.marginTop = "0px";
@@ -62,10 +60,8 @@ export default class BBIframe extends Iframe {
 
     public setSubmission(parameter: string): Promise<string> {
         return new Promise((resolve, reject) => {
-            let submissionDiv = document.getElementsByClassName('mceIframeContainer mceFirst mceLast')[0];
-            let ifrm = submissionDiv.getElementsByTagName('iframe')[0];
-            let submissionBox = ifrm.contentWindow.document.getElementById('tinymce');
-            submissionBox.getElementsByTagName('p')[0].innerHTML = parameter;
+            const iframeBox = this.iframe.contentDocument.getElementById("studentSubmission.text_ifr");
+            iframeBox.contentDocument.getElementById("tinymce").innerHTML = parameter;
 
             const result = "Submission has been set";
             resolve(result);

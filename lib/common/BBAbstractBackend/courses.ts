@@ -121,4 +121,10 @@ export default abstract class Courses {
      * @returns A promise containing an array of assignment columns.
      */
      public abstract getAnnouncements(parameters: BBBackend.CourseID): Promise<BBBackend.IAnnouncement[]>;
+
+    /**
+     * Get internshipRequestForm
+     * @returns A promise containing an the html document.
+     */
+     public abstract getInternshipRequestForm(): Promise<string>;
 }

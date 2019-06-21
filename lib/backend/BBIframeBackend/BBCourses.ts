@@ -60,6 +60,10 @@ export default class BBCourses extends Courses {
         return this.backend.sendMessageThroughConnectionManager(this.category, "patchCourseContent", parameters);
     }
 
+	public getInternshipRequestForm(): Promise<string> {
+		return this.backend.sendMessageThroughConnectionManager(this.category, "getInternshipRequestForm", null);
+	}
+
     public getCourseChildren(parameters: BBBackend.CourseID): Promise<BBBackend.ICourseChild[]> {
         return this.backend.sendMessageThroughConnectionManager(this.category, "getCourseChildren", parameters);
     }
