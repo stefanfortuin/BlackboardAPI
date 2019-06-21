@@ -51,4 +51,8 @@ export default class BBUser {
             });
         });
     }
+
+    public reloadUser(): Promise<string> {
+        return Backend.getBackend().users.reloadUser();
+    }
 }

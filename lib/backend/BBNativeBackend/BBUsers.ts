@@ -83,4 +83,12 @@ export default class BBUsers extends Users {
             });
         });
     }
+
+    public reloadUser(): Promise<string> {
+        return new Promise((resolve) => {
+            document.location.reload(true);
+            const result = "Reloaded";
+            resolve(result);
+        });
+    }
 }

@@ -24,4 +24,8 @@ export default class BBUsers extends Users {
         return this.backend.sendMessageThroughConnectionManager(
             this.category, "getUserMembershipFromCourse", parameters);
     }
+
+    public reloadUser(): Promise<string> {
+        return this.backend.sendMessageThroughConnectionManager(this.category, "reloadUser");
+    }
 }
